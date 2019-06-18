@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -55,7 +56,7 @@ public class TituloController {
 	@RequestMapping
 	public ModelAndView listar(@ModelAttribute("filtro")TituloFilter filtro) {
 		String descricao = filtro.getDescricao() == null? "" : filtro.getDescricao();
-		List<Titulo> todosTitulos = tr.findByDescricaoContaining(descricao);
+		List<Titulo> todosTitulos = tr.findByDescricaoContainingOrderByDescricaoAsc(descricao);
 		ModelAndView modelAndView = new ModelAndView("PesquisaTitulos");
 		modelAndView.addObject("todosTitulos" , todosTitulos);
 		return modelAndView;
