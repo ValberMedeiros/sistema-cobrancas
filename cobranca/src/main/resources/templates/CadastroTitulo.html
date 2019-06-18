@@ -51,7 +51,7 @@
 					<div class="form-group row">
 						<label for="valor" class="col-sm-2 col-form-label">Valor</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" id="valor" th:field="*{valor}" th:classappend="${#fields.hasErrors('valor')} ? is-invalid"/>
+							<input type="text" class="form-control js-currency" id="valor" th:field="*{valor}" th:classappend="${#fields.hasErrors('valor')} ? is-invalid"/>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -82,6 +82,7 @@
 	<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.maskMoney.min.js"></script>
 	<script type="text/javascript" src="/js/cobrancas.js"></script>
 	
 </body>

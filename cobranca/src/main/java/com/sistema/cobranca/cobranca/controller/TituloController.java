@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sistema.cobranca.cobranca.model.StatusTitulo;
 import com.sistema.cobranca.cobranca.model.Titulo;
 import com.sistema.cobranca.cobranca.repository.TituloRepository;
+import com.sistema.cobranca.cobranca.repository.filter.TituloFilter;
 
 @Controller
 @RequestMapping("/titulos")
@@ -51,11 +53,11 @@ public class TituloController {
 	}
 	
 	@RequestMapping
-	public ModelAndView listar() {
-		List<Titulo> titulos = (List<Titulo>) tr.findAll();
+	public ModelAndView listar(@ModelAttribute("filtro")TituloFilter filtro) {
+		String descricao = filtro.getDescricao() == null? "" : filtro.getDescricao();
+		List<Titulo> todosTitulos = tr.findByDescricaoContaining(descricao);
 		ModelAndView modelAndView = new ModelAndView("PesquisaTitulos");
-		modelAndView.addObject("todosTitulos" , titulos);
-		
+		modelAndView.addObject("todosTitulos" , todosTitulos);
 		return modelAndView;
 	}
 	

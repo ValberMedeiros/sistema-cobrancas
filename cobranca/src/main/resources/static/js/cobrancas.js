@@ -18,6 +18,7 @@ $('#modalDelete').on('show.bs.modal', function(event) {
 
 $(function() {
 	$('[rel="tooltip"]').tooltip();
+	$('.js-currency').maskMoney({thousands: '.', decimal: ',' , allowZero: true});
 });
 
 $(document).ready(function(e) {
